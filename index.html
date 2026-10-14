@@ -140,6 +140,14 @@ a.dl-row:hover{background:var(--mist)}
 .send-box ol{margin:8px 0 14px;padding-left:22px}
 .send-box li{margin:6px 0}
 
+.trial-box{margin-top:26px;padding:16px 18px;border-radius:14px;background:var(--gold-soft);color:var(--ink);display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;justify-content:space-between}
+.trial-box p{margin:0;max-width:60ch}
+.lockbox{max-width:640px;margin:28px 0 20px;padding:22px;border:1px solid var(--line);border-radius:16px;background:var(--surface)}
+.lockbox p{margin:0 0 14px}
+.lock-title{font:600 1.3rem var(--serif);margin:0 0 8px !important}
+.btn-sm{min-height:34px;padding:0 12px;font-size:.88rem;border-radius:9px}
+.linkbtn{border:0;background:none;color:var(--bad);font:600 .85rem var(--sans);cursor:pointer;padding:4px 2px}
+
 /* Teacher dashboard */
 .t-head{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
 .t-head h1{margin:0}
@@ -346,154 +354,23 @@ const SUPABASE_KEY = "sb_publishable_3dezSVIz3BTQnorCKN8gfw_rXDJr3If";
    COURSE CONTENT
    To edit a lesson, change the text inside the quotation marks.
    ========================================================= */
-const DAYS = [
-{
-  n:1, short:"Sleep", title:"Why Your Brain Needs Sleep to Learn", topic:"Science and learning",
-  summary:"How sleep turns what you study into lasting memories, and why all-nighters backfire.",
-  article:[
-    "It is 2 a.m. the night before an important exam, and you are still reading your notes. Many students believe that staying up late is the best way to prepare. However, scientists who study the brain say the opposite: if you want to remember what you have learned, one of the most useful things you can do is go to bed.",
-    "While you sleep, your brain is far from inactive. During the day, new information is stored temporarily in a small area of the brain called the hippocampus. At night, especially during deep sleep, the brain replays this information and gradually moves it to the cortex, where long-term memories are kept. In other words, sleep helps to turn short-term memories into knowledge that lasts.",
-    "Researchers have demonstrated this in many experiments. In a typical study, two groups of people learn the same list of words. One group sleeps afterwards, while the other stays awake. When both groups are tested later, the people who slept usually remember significantly more. Sleep also seems to help us make connections between ideas, which is why a difficult problem can sometimes feel easier in the morning.",
-    "Lack of sleep, on the other hand, has the opposite effect. After a sleepless night, people find it harder to concentrate, their reactions slow down, and they are more likely to make careless mistakes. An “all-nighter” before a test may give you a few extra hours with your books, but your tired brain will struggle to recall what you studied.",
-    "Teenagers face a particular challenge. As children reach adolescence, their body clock shifts, so they naturally feel sleepy later in the evening. Yet school often starts early, which means many young people regularly get less than the eight to ten hours of sleep that experts recommend for their age group.",
-    "So what can students do? Sleep experts suggest keeping a regular schedule, even at weekends, and avoiding phones and laptops for the last hour before bed, because the light from screens can delay sleep. It also helps to review difficult material in the evening and then let sleep do the rest. The next time you are tempted to stay up all night, remember: rest is not a break from learning. It is part of it."
-  ],
-  vocab:[
-    {w:"temporarily", pos:"adverb", def:"for a short time only", ex:"The museum is temporarily closed for repairs."},
-    {w:"long-term", pos:"adjective", def:"continuing for a long time into the future", ex:"Regular exercise has long-term benefits for your health."},
-    {w:"demonstrate", pos:"verb", def:"to show clearly that something is true", ex:"The study demonstrates that reading aloud improves pronunciation.", af:"demonstrated", xf:"demonstrates"},
-    {w:"significantly", pos:"adverb", def:"by a large or important amount", ex:"Her English has improved significantly this year."},
-    {w:"lack of", pos:"noun phrase", def:"the situation of not having enough of something", ex:"The project failed because of a lack of money."},
-    {w:"concentrate", pos:"verb", def:"to give all your attention to something", ex:"I can't concentrate when the TV is on."},
-    {w:"recall", pos:"verb", def:"to remember something from the past", ex:"I can't recall the name of the hotel we stayed in."},
-    {w:"make connections", pos:"collocation", def:"to see how different ideas or facts are related", ex:"Good readers make connections between the text and their own lives."}
-  ],
-  mcq:[
-    {q:"What is the main idea of the article?", o:["Students should study late at night.","Sleep plays an important role in learning and memory.","Teenagers sleep more than adults.","Screens are the main reason students fail exams."], a:1, p:1},
-    {q:"Where is new information stored first?", o:["In the cortex","In the hippocampus","In the body clock","In long-term memory"], a:1, p:2},
-    {q:"In the study described in paragraph 3, the people who slept…", o:["learned a different list of words.","usually remembered more words.","were tested immediately.","solved more maths problems."], a:1, p:3},
-    {q:"Why do teenagers often feel sleepy later in the evening?", o:["They use their phones too much.","Their body clock shifts during adolescence.","School finishes late in the day.","They study more than adults do."], a:1, p:5},
-    {q:"What is the writer's attitude towards all-nighters?", o:["Supportive","Neutral","Critical","Uncertain"], a:2, p:4},
-    {q:"Which piece of advice is NOT mentioned in the article?", o:["Keep a regular sleep schedule.","Avoid screens before bed.","Drink coffee to stay alert.","Review difficult material in the evening."], a:2, p:6}
-  ],
-  tf:[
-    {s:"During sleep, the brain stops working completely.", a:"F", p:2},
-    {s:"Sleep may help people find solutions to difficult problems.", a:"T", p:3},
-    {s:"Most students who fail exams have stayed up all night.", a:"NG", p:4},
-    {s:"Experts recommend eight to ten hours of sleep for teenagers.", a:"T", p:5}
-  ],
-  writing:{type:"Essay", min:150, max:200,
-    task:"Some schools have started their lessons later in the morning so that students can get more sleep. Do the advantages of this outweigh the disadvantages? Give reasons and examples.",
-    phrases:["One clear advantage is that…","On the other hand, a possible drawback is…","For example, …","Overall, I believe that…"]},
-  speaking:[
-    {q:"How many hours do you usually sleep on a school or work night? Is it enough?", prep:0, talk:30},
-    {q:"What do you do when you can't fall asleep?", prep:0, talk:30},
-    {q:"Describe a time when you were very tired but had to do something important. What happened, and how did you manage?", prep:60, talk:120},
-    {q:"Some people say that technology is ruining our sleep. Do you agree? Give reasons for your answer.", prep:60, talk:120}
-  ]
-},
-{
-  n:2, short:"Aral Sea", title:"The Aral Sea: Lessons from a Vanishing Sea", topic:"Environment and our region",
-  summary:"How one of the world's largest lakes almost disappeared, and how people are bringing the region back to life.",
-  article:[
-    "Sixty years ago, the Aral Sea was the fourth-largest lake on Earth. Fishing boats sailed out from busy ports, and towns along its shores depended on the water for food, jobs and trade. Today, much of that water has gone. In places such as Moynaq in Karakalpakstan, rusty ships lie in the sand, many kilometres from the nearest shore.",
-    "The Aral Sea was fed by two great rivers, the Amu Darya and the Syr Darya. In the 1960s, Soviet planners decided to divert large amounts of their water to irrigate cotton fields in the desert. The cotton harvest grew, but the sea received less and less water. Year after year, it shrank, and the water that remained became saltier.",
-    "The consequences were severe. The fishing industry collapsed, and thousands of people lost their jobs. As the seabed dried out, strong winds began to pick up dust containing salt and agricultural chemicals and carry it across the region. Doctors have linked this polluted dust to breathing problems and other health issues. Even the local climate changed: without the sea to soften the temperature, summers became hotter and winters colder.",
-    "For a long time, the Aral Sea was described as one of the world's worst environmental disasters. However, the story does not end there. In 2005, Kazakhstan completed a dam that separated the northern part of the sea from the south. Since then, the water level in the North Aral has risen, the water has become less salty, and fish, and fishermen, have returned.",
-    "In Uzbekistan, the focus has been on the dried seabed. To prevent dust storms, foresters have planted hardy desert plants such as saxaul across huge areas of sand. Their roots hold the soil in place, and over time they may create small forests where there was once only dust. The United Nations has also recognised the region as a zone of ecological innovation, encouraging new ideas and international investment.",
-    "The Aral Sea will probably never return to its original size. Nevertheless, its story offers an important lesson: natural resources are not unlimited, and decisions made for short-term profit can affect people for generations. It also shows that, with cooperation and patience, even serious damage can be partly reversed."
-  ],
-  vocab:[
-    {w:"divert", pos:"verb", def:"to make something, such as water or traffic, go in a different direction", ex:"Engineers diverted the river to protect the town from floods.", xf:"diverted"},
-    {w:"irrigate", pos:"verb", def:"to supply land or crops with water through pipes or channels", ex:"Farmers irrigate their fields during the dry summer months."},
-    {w:"shrink", pos:"verb (shrink, shrank, shrunk)", def:"to become smaller in size or amount", ex:"My favourite sweater shrank when I washed it in hot water.", af:"shrank", xf:"shrank"},
-    {w:"consequence", pos:"noun", def:"a result of an action or situation, often a bad one", ex:"The flood had serious consequences for local farmers.", af:"consequences", xf:"consequences"},
-    {w:"collapse", pos:"verb", def:"to fail suddenly and completely", ex:"Many small businesses collapsed during the crisis.", af:"collapsed", xf:"collapsed"},
-    {w:"prevent", pos:"verb", def:"to stop something from happening", ex:"Wearing a helmet can prevent serious head injuries."},
-    {w:"short-term profit", pos:"collocation", def:"money made quickly, without thinking about the future", ex:"The company cut down the forest for short-term profit."},
-    {w:"reverse", pos:"verb", def:"to change something back to how it was before", ex:"It is very difficult to reverse the effects of pollution.", af:"reversed"}
-  ],
-  mcq:[
-    {q:"What was the main cause of the Aral Sea shrinking?", o:["A long period without rain","Water from its rivers was used for farming","The dam built in 2005","Rising temperatures around the world"], a:1, p:2},
-    {q:"What can visitors see in Moynaq today?", o:["A busy fishing port","Ships lying in the sand","A new cotton factory","A large forest"], a:1, p:1},
-    {q:"According to paragraph 3, why did the local climate change?", o:["The sea no longer softened the temperature.","Too many trees were cut down.","Dust blocked the sunlight.","The cotton fields absorbed the heat."], a:0, p:3},
-    {q:"What happened after the dam was completed in 2005?", o:["The whole sea returned to its original size.","The water level in the North Aral rose.","The southern part became less salty.","Cotton farming stopped."], a:1, p:4},
-    {q:"Why are saxaul plants being planted?", o:["To provide food for animals","To hold the soil and reduce dust storms","To produce wood for building","To attract tourists"], a:1, p:5},
-    {q:"What is the writer's main message in the final paragraph?", o:["The Aral Sea will soon be fully restored.","Environmental damage can never be repaired.","Short-term decisions can have long-term costs, but some damage can be repaired.","Cotton should not be grown in Central Asia."], a:2, p:6}
-  ],
-  tf:[
-    {s:"The Aral Sea was once the largest lake in the world.", a:"F", p:1},
-    {s:"The water in the sea became saltier as the sea shrank.", a:"T", p:2},
-    {s:"Most fishermen from Moynaq moved to Kazakhstan.", a:"NG", p:4},
-    {s:"Saxaul can survive in difficult desert conditions.", a:"T", p:5}
-  ],
-  writing:{type:"Formal letter", min:150, max:180,
-    task:"Write a letter to the editor of your local newspaper. Suggest two ways that people in your city could use water more responsibly, and explain why each idea would help.",
-    phrases:["Dear Editor,","I am writing to suggest…","Firstly, … Secondly, …","This would help because…","Yours faithfully,"]},
-  speaking:[
-    {q:"Is there a lake, river or sea that you love visiting? Describe it.", prep:0, talk:30},
-    {q:"Do people in your country waste water? Give an example.", prep:0, talk:30},
-    {q:"Describe an environmental problem in your city or region. What causes it, and what could be done about it?", prep:60, talk:120},
-    {q:"“Economic growth is more important than protecting nature.” Give arguments for and against this statement.", prep:60, talk:120}
-  ]
-},
-{
-  n:3, short:"Fashion", title:"The True Cost of a Cheap T-Shirt", topic:"Society and consumer habits",
-  summary:"Fast fashion makes clothes cheap and trendy. This article asks who really pays the price.",
-  article:[
-    "A T-shirt for the price of a sandwich. A new pair of jeans every few weeks. Over the past two decades, clothes have become cheaper and more fashionable than ever before. This model, known as “fast fashion”, allows big brands to copy catwalk trends and put them in shops within weeks. But behind the low price tags, there is a cost that customers rarely see.",
-    "The first cost is environmental. Producing clothes uses enormous amounts of resources. According to the World Wildlife Fund, making a single cotton T-shirt can require around 2,700 litres of water, which is roughly what one person drinks in two and a half years. Many cheap garments are made from polyester, a type of plastic, which releases tiny fibres called microplastics every time it is washed. These fibres end up in rivers and oceans.",
-    "The second cost is human. To keep prices low, many brands manufacture their clothes in countries where wages are low and working conditions can be poor. In 2013, the world was shocked when the Rana Plaza building in Bangladesh collapsed, killing more than 1,100 garment workers. The disaster led to new safety agreements, but campaigners argue that many workers in the industry are still underpaid.",
-    "Finally, there is the problem of waste. Because clothes are so cheap, people tend to treat them as disposable. Some items are worn only a handful of times before being thrown away, and a large proportion of old clothing ends up in landfill or is burned rather than recycled.",
-    "Not everyone agrees that fast fashion is entirely negative. Supporters point out that it has made stylish clothing affordable for millions of people and created jobs in developing countries. For a family on a tight budget, a cheap coat may be a necessity, not a luxury.",
-    "Still, many consumers are rethinking their habits. Second-hand shopping, clothing swaps and repair workshops are becoming increasingly popular, especially among young people. Some experts suggest a simple rule before buying anything new: ask yourself whether you will wear it at least thirty times. If the answer is no, perhaps it can stay in the shop."
-  ],
-  vocab:[
-    {w:"price tag", pos:"noun", def:"a label showing how much something costs; also the cost itself", ex:"The new phone has a price tag of over $1,000.", af:"price tags"},
-    {w:"manufacture", pos:"verb", def:"to make goods in large numbers, usually in a factory", ex:"This company manufactures car parts for European brands.", xf:"manufactures"},
-    {w:"wage", pos:"noun", def:"the money someone is paid for their work, usually every week", ex:"The workers are asking for higher wages.", af:"wages", xf:"wages"},
-    {w:"working conditions", pos:"collocation", def:"the environment and situation in which people work", ex:"The new manager promised to improve working conditions in the factory."},
-    {w:"disposable", pos:"adjective", def:"made to be thrown away after being used once or a few times", ex:"Many cafés no longer use disposable cups."},
-    {w:"affordable", pos:"adjective", def:"cheap enough for most people to buy", ex:"The city needs more affordable housing for young families."},
-    {w:"on a tight budget", pos:"phrase", def:"having only a small amount of money to spend", ex:"As students, we travelled around Europe on a tight budget."},
-    {w:"increasingly", pos:"adverb", def:"more and more", ex:"Online learning is becoming increasingly popular."}
-  ],
-  mcq:[
-    {q:"What is “fast fashion”?", o:["Clothing that is made by hand","A business model that brings new trends to shops very quickly","Expensive designer clothing","Clothing designed for sport"], a:1, p:1},
-    {q:"Why does the writer mention the 2,700 litres of water?", o:["To show that cotton is better than polyester","To show how many resources clothing production uses","To show that people do not drink enough water","To explain why T-shirts are expensive"], a:1, p:2},
-    {q:"What happens when polyester clothes are washed?", o:["They shrink.","They lose their colour.","They release microplastics.","They become stronger."], a:2, p:2},
-    {q:"What was one result of the Rana Plaza disaster?", o:["Fast fashion brands closed down.","New safety agreements were introduced.","Workers' wages doubled.","Production moved to Europe."], a:1, p:3},
-    {q:"In paragraph 5, the writer…", o:["presents arguments in favour of fast fashion.","criticises families with little money.","explains how to recycle clothes.","describes a new fashion trend."], a:0, p:5},
-    {q:"The “thirty times” rule encourages people to…", o:["wash their clothes less often.","buy only clothes they will wear many times.","go shopping thirty times a year.","give away thirty items of clothing."], a:1, p:6}
-  ],
-  tf:[
-    {s:"Fast fashion brands can bring catwalk trends into shops within weeks.", a:"T", p:1},
-    {s:"Polyester is a natural fabric.", a:"F", p:2},
-    {s:"Most second-hand shops are run by young people.", a:"NG", p:6},
-    {s:"Supporters say fast fashion has created jobs in developing countries.", a:"T", p:5}
-  ],
-  writing:{type:"Informal email", min:120, max:150,
-    task:"Your friend Aziz writes: “I want to buy lots of new clothes before the new school year. Where should I shop?” Write an email to Aziz. Give your advice and suggest at least two alternatives to buying fast fashion.",
-    phrases:["Thanks for your message!","If I were you, I'd…","Why don't you…?","Have you thought about…?","Let me know what you decide!"]},
-  speaking:[
-    {q:"How often do you buy new clothes?", prep:0, talk:30},
-    {q:"Do you prefer shopping online or in shops? Why?", prep:0, talk:30},
-    {q:"Describe an item of clothing that is special to you. Where did you get it, and why is it important to you?", prep:60, talk:120},
-    {q:"Should governments make fashion brands responsible for the waste they create? Give reasons for your answer.", prep:60, talk:120}
-  ]
-}
+/* Titles shown to everyone. The lessons themselves are stored in Supabase
+   and are only sent to students who may open that day. */
+const META = [
+  {n:1, short:"Sleep", title:"Why Your Brain Needs Sleep to Learn", topic:"Science and learning", summary:"How sleep turns what you study into lasting memories, and why all-nighters backfire."},
+  {n:2, short:"Aral Sea", title:"The Aral Sea: Lessons from a Vanishing Sea", topic:"Environment and our region", summary:"How one of the world's largest lakes almost disappeared, and how people are bringing the region back to life."},
+  {n:3, short:"Fashion", title:"The True Cost of a Cheap T-Shirt", topic:"Society and consumer habits", summary:"Fast fashion makes clothes cheap and trendy. This article asks who really pays the price."},
+  {n:4, short:"Work week", title:"Is a Four-Day Working Week the Future?", topic:"Work and society", summary:"What happens when companies give staff an extra day off, and why not everyone is convinced."},
+  {n:5, short:"Trees", title:"Why Cities Need Trees", topic:"Environment and cities", summary:"How trees cool streets, clean the air and make city life healthier."},
+  {n:6, short:"Attention", title:"How Social Media Shapes Our Attention", topic:"Technology and the mind", summary:"Why scrolling is so hard to stop, and what it does to our focus."},
+  {n:7, short:"Silk Road", title:"The Silk Road, Then and Now", topic:"History and our region", summary:"How an ancient network of trade routes shaped Central Asia, and why it matters again today."},
+  {n:8, short:"Food waste", title:"Food Waste: A Global Problem", topic:"Environment and everyday life", summary:"Why so much food is thrown away, and simple ways to waste less."},
+  {n:9, short:"AI", title:"Artificial Intelligence in Everyday Life", topic:"Technology and the future", summary:"Where AI already helps us, where it makes mistakes, and how to use it wisely."},
+  {n:10, short:"Habits", title:"The Science of Habits", topic:"Psychology and learning", summary:"How habits form, why they are hard to break, and how to build good ones."}
 ];
-
-/* Days planned for Stage 2 */
-const PLANNED = [
-  {n:4, short:"Work week", title:"The Four-Day Working Week"},
-  {n:5, short:"Trees", title:"Why Cities Need Trees"},
-  {n:6, short:"Attention", title:"How Social Media Shapes Our Attention"},
-  {n:7, short:"Silk Road", title:"The Silk Road, Then and Now"},
-  {n:8, short:"Food waste", title:"Food Waste: A Global Problem"},
-  {n:9, short:"AI", title:"Artificial Intelligence in Everyday Life"},
-  {n:10, short:"Habits", title:"The Science of Habits"}
-];
+const META_BY = {}; META.forEach(m=>{ META_BY[m.n] = m; });
+let DAYS = [];   /* filled after login with the days this person may open */
+let COURSE = {published:[], free_days:1, unlock_hour:6, approved_at:null, is_teacher:false};
 
 const TEACHER = {name:"Shirin Ishbekova", first:"Shirin", telegram:"anvarovna_0808", photo:"data:image/jpeg;base64,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"};
 const TG_URL = "https://t.me/" + TEACHER.telegram;
@@ -542,7 +419,7 @@ function stepDone(n,k){
 }
 function doneCount(n){ return STEPS.filter(([k])=>stepDone(n,k)).length; }
 function dayComplete(n){ return doneCount(n)===STEPS.length; }
-function currentDay(){ const d = DAYS.find(x=>!dayComplete(x.n)); return d ? d.n : DAYS[DAYS.length-1].n; }
+function currentDay(){ if(!DAYS.length) return 1; const d = DAYS.find(x=>!dayComplete(x.n)); return d ? d.n : DAYS[DAYS.length-1].n; }
 
 /* =========================================================
    HELPERS
@@ -681,11 +558,10 @@ function saveScore(n, key, score, total){
 function routeHTML(cur){
   let h = '<ol class="route" aria-label="Your 10-day route">';
   for(let n=1; n<=10; n++){
-    const d = getDay(n), p = PLANNED.find(x=>x.n===n);
-    const cls = !d ? "soon" : dayComplete(n) ? "done" : n===cur ? "current" : "";
-    const label = d ? d.short : p.short;
-    const inner = '<span class="dot">' + (d && dayComplete(n) ? "✓" : n) + '</span><span class="stop-label">' + esc(label) + '</span>';
-    h += '<li class="' + cls + '">' + (d ? '<a class="stop" href="#/day/' + n + '" aria-label="Day ' + n + ': ' + esc(d.title) + '">' + inner + '</a>' : '<span class="stop" aria-label="Day ' + n + ': coming soon">' + inner + '</span>') + '</li>';
+    const m = META_BY[n], st = dayState(n), open = st === "open";
+    const cls = open ? (dayComplete(n) ? "done" : n===cur ? "current" : "") : "soon";
+    const inner = '<span class="dot">' + (open && dayComplete(n) ? "✓" : n) + '</span><span class="stop-label">' + esc(m.short) + '</span>';
+    h += '<li class="' + cls + '">' + (st === "soon" ? '<span class="stop" aria-label="Day ' + n + ': coming soon">' + inner + '</span>' : '<a class="stop" href="#/day/' + n + '" aria-label="Day ' + n + ': ' + esc(m.title) + '">' + inner + '</a>') + '</li>';
   }
   return h + '</ol>';
 }
@@ -694,19 +570,22 @@ function renderHome(){
   const cur = currentDay(), started = Object.keys(S.days).length > 0;
   let rows = "";
   for(let n=1; n<=10; n++){
-    const d = getDay(n), p = PLANNED.find(x=>x.n===n);
+    const d = getDay(n), m = META_BY[n], st = dayState(n);
     if(d){
       const c = doneCount(n);
       const pill = c===5 ? '<span class="pill ok">Complete</span>' : c>0 ? '<span class="pill go">' + c + ' of 5 steps</span>' : '<span class="pill">Not started</span>';
       rows += '<li><a class="dl-row" href="#/day/' + n + '"><span class="dl-num">' + n + '</span><span><span class="dl-title">' + esc(d.title) + '</span><span class="dl-desc">' + esc(d.summary) + '</span></span>' + pill + '</a></li>';
+    } else if(st === "soon"){
+      rows += '<li><div class="dl-row soon"><span class="dl-num">' + n + '</span><span><span class="dl-title">' + esc(m.title) + '</span><span class="dl-desc">' + esc(m.summary) + '</span></span><span class="pill">Coming soon</span></div></li>';
     } else {
-      rows += '<li><div class="dl-row soon"><span class="dl-num">' + n + '</span><span><span class="dl-title">' + esc(p.title) + '</span><span class="dl-desc">Opens soon</span></span><span class="pill">Coming soon</span></div></li>';
+      const pill = st === "free" ? '<span class="pill ok">Free</span>' : st === "scheduled" ? '<span class="pill go">Opens ' + esc(fmtShort(opensAt(n))) + '</span>' : '<span class="pill">🔒 Full course</span>';
+      rows += '<li><a class="dl-row" href="' + (USER ? '#/day/' + n : '#/register') + '"><span class="dl-num">' + n + '</span><span><span class="dl-title">' + esc(m.title) + '</span><span class="dl-desc">' + esc(m.summary) + '</span></span>' + pill + '</a></li>';
     }
   }
   app.innerHTML = `
   <section class="hero">
     <h1>10-Day Article Marathon</h1>
-    <p class="lede">Ten days, ten articles about the real world, and one focused practice session each day. Build your reading, vocabulary, writing and speaking at B1–B2 level, and walk into the CEFR Multilevel exam with confidence.</p>
+    <p class="lede">Ten days, ten articles about the real world, and one focused practice session each day. Day 1 is free to try. Build your reading, vocabulary, writing and speaking at B1–B2 level, and walk into the CEFR Multilevel exam with confidence.</p>
     <p class="byline"><img src="${TEACHER.photo}" alt="" width="44" height="44"><span>With your teacher, <strong>${TEACHER.name}</strong></span></p>
     ${routeHTML(cur)}
     <div class="hero-actions">
@@ -714,6 +593,8 @@ function renderHome(){
       <a class="btn btn-ghost btn-lg" href="#/progress">See my progress</a>` : `<a class="btn btn-lg" href="#/register">Start learning</a>
       <a class="btn btn-ghost btn-lg" href="#/login">I already have an account</a>`}
     </div>
+    ${USER && !IS_TEACHER && !COURSE.approved_at && COURSE.published.some(x=>x > COURSE.free_days) ? `<div class="trial-box"><p><strong>You are on the free trial.</strong> ${freeDaysText()} is open for you. To unlock all 10 days, message ${esc(TEACHER.first)} on Telegram.</p><a class="btn" href="${TG_URL}" target="_blank" rel="noopener">Get the full course</a></div>` : ""}
+    ${USER && !IS_TEACHER && COURSE.approved_at ? `<p class="muted small" style="margin-top:18px">✓ Full course. A new day opens every morning at ${String(COURSE.unlock_hour).padStart(2,"0")}:00 (Tashkent time).</p>` : ""}
   </section>
 
   <section class="section teacher" aria-labelledby="teacherName">
@@ -754,11 +635,7 @@ function renderHome(){
 
 function renderDay(n, tab){
   const d = getDay(n);
-  if(!d){
-    const p = PLANNED.find(x=>x.n===n);
-    app.innerHTML = '<a class="back" href="#/">← All days</a><h1>' + (p ? "Day " + n + ": " + esc(p.title) : "Page not found") + '</h1><p class="muted">This day isn\'t open yet. Start with the days that are available now.</p><a class="btn" href="#/day/' + currentDay() + '">Go to Day ' + currentDay() + '</a>';
-    return;
-  }
+  if(!d){ renderLocked(n); return; }
   if(!STEPS.some(([k])=>k===tab)) tab = "article";
   app.innerHTML = `
   <div class="day-head">
@@ -778,7 +655,7 @@ function renderDay(n, tab){
 function nextLink(n, tab){
   const i = STEPS.findIndex(([k])=>k===tab);
   if(i < STEPS.length-1) return '<a class="btn" href="#/day/' + n + '/' + STEPS[i+1][0] + '">Next: ' + STEPS[i+1][1] + '</a>';
-  return getDay(n+1) ? '<a class="btn" href="#/day/' + (n+1) + '">Go to Day ' + (n+1) + '</a>' : '<a class="btn" href="#/progress">See my progress</a>';
+  return (META_BY[n+1] && dayState(n+1) !== "soon") ? '<a class="btn" href="#/day/' + (n+1) + '">Go to Day ' + (n+1) + '</a>' : '<a class="btn" href="#/progress">See my progress</a>';
 }
 
 function pArticle(d, panel){
@@ -1024,8 +901,12 @@ function renderProgress(){
   const complete = DAYS.filter(d=>dayComplete(d.n)).length;
   let rows = "";
   for(let n=1; n<=10; n++){
-    const d = getDay(n), p = PLANNED.find(x=>x.n===n), s = S.days[n] || {};
-    if(!d){ rows += '<li class="prow"><span class="dl-num" style="color:var(--line)">' + n + '</span><span class="dl-title">' + esc(p.title) + '</span><span class="muted small">Coming soon</span></li>'; continue; }
+    const d = getDay(n), m = META_BY[n], s = S.days[n] || {};
+    if(!d){
+      const st = dayState(n), label = st === "scheduled" ? "Opens " + fmtOpen(opensAt(n)) : st === "soon" ? "Coming soon" : "🔒 Full course";
+      rows += '<li class="prow"><span class="dl-num" style="color:var(--line)">' + n + '</span><a class="dl-title" style="text-decoration:none;color:inherit" href="#/day/' + n + '">' + esc(m.title) + '</a><span class="muted small">' + esc(label) + '</span></li>';
+      continue;
+    }
     const ticks = STEPS.map(([k,l])=>{ const on = stepDone(n,k); return '<span><span class="tick' + (on?' on':'') + '" aria-hidden="true">' + (on?'✓':'') + '</span>' + l + (on ? '' : ' <span class="sr" style="position:absolute;left:-9999px">(not done)</span>') + '</span>'; }).join("");
     const score = (r,label)=> r && r.last!=null ? '<span>' + label + ': best ' + r.best + '/' + r.total + '<span class="minibar" aria-hidden="true"><i style="width:' + Math.round(100*r.best/r.total) + '%"></i></span></span>' : '<span class="muted">' + label + ': not tried yet</span>';
     rows += '<li class="prow"><span class="dl-num">' + n + '</span><a class="dl-title" style="text-decoration:none;color:inherit" href="#/day/' + n + '">' + esc(d.title) + '</a><div><div class="pticks">' + ticks + '</div><div class="pscores">' + score(s.reading,"Reading") + score(s.vocab,"Vocabulary") + '</div></div></li>';
@@ -1123,23 +1004,100 @@ async function syncFromServer(){
   return true;
 }
 
+async function loadCourse(){
+  if(!db) return;
+  const ov = await db.rpc("course_overview");
+  if(!ov.error && ov.data) COURSE = Object.assign({published:[], free_days:1, unlock_hour:6, approved_at:null, is_teacher:false}, ov.data);
+  if(USER){
+    const r = await db.from("day_content").select("day,content").order("day");
+    if(!r.error) DAYS = (r.data || []).filter(x=>META_BY[x.day]).map(x=>Object.assign({n:x.day}, META_BY[x.day], x.content));
+  } else DAYS = [];
+}
+
 async function setUser(user){
-  USER = user || null; PROFILE = null; IS_TEACHER = false; TDATA = null;
-  if(!USER){ STORE_KEY = null; S = emptyState(); updateNav(); return; }
+  USER = user || null; PROFILE = null; IS_TEACHER = false; TDATA = null; DAYS = [];
+  if(!USER){ STORE_KEY = null; S = emptyState(); try{ await loadCourse(); }catch(e){} updateNav(); return; }
   S = loadFor(USER.id);
   updateNav();
   try{
-    const [pr, tr] = await Promise.all([
-      db.from("profiles").select("full_name,email").eq("id", USER.id).maybeSingle(),
-      db.rpc("is_teacher")
-    ]);
+    const pr = await db.from("profiles").select("full_name,email").eq("id", USER.id).maybeSingle();
     PROFILE = pr.data || {full_name:(USER.user_metadata||{}).full_name || "", email:USER.email};
-    IS_TEACHER = tr.data === true;
   }catch(e){ PROFILE = {full_name:(USER.user_metadata||{}).full_name || "", email:USER.email}; }
+  try{ await loadCourse(); }catch(e){ console.warn(e); }
+  IS_TEACHER = COURSE.is_teacher === true;
   updateNav();
   try{ await syncFromServer(); }catch(e){ console.warn(e); }
   flushOutbox();
 }
+
+/* =========================================================
+   FREE TRIAL, APPROVAL AND DAILY UNLOCKING
+   ========================================================= */
+/* open | free (logged out, trial day) | locked (needs approval) | scheduled (approved, opens later) | soon (not written yet) */
+function dayState(n){
+  if(getDay(n)) return "open";
+  if(!COURSE.published.includes(n)) return "soon";
+  if(!USER) return n <= COURSE.free_days ? "free" : "locked";
+  if(COURSE.approved_at && n > COURSE.free_days) return "scheduled";
+  return "locked";
+}
+/* When a day opens for an approved student: the morning (Tashkent time) N days after approval */
+function opensAt(n){
+  if(!COURSE.approved_at) return null;
+  const off = 5*3600e3, a = new Date(Date.parse(COURSE.approved_at) + off);
+  return new Date(Date.UTC(a.getUTCFullYear(), a.getUTCMonth(), a.getUTCDate() + (n - COURSE.free_days), COURSE.unlock_hour) - off);
+}
+function fmtOpen(d){ return d ? d.toLocaleString([], {weekday:"long", day:"numeric", month:"long", hour:"2-digit", minute:"2-digit"}) : ""; }
+function fmtShort(d){ return d ? d.toLocaleString([], {weekday:"short", day:"numeric", month:"short"}) : ""; }
+function freeDaysText(){ const f = COURSE.free_days; return f <= 1 ? "Day 1" : "Days 1–" + f; }
+
+function renderLocked(n){
+  const m = META_BY[n];
+  if(!m){ app.innerHTML = '<a class="back" href="#/">← All days</a><h1>Page not found</h1><a class="btn" href="#/">Back to all days</a>'; return; }
+  const st = dayState(n);
+  let body = "";
+  if(st === "soon"){
+    body = '<div class="lockbox"><p class="lock-title">Coming soon</p><p class="muted">This day is still being prepared. It will appear here soon.</p></div><a class="btn btn-ghost" href="#/">Back to all days</a>';
+  } else if(st === "scheduled"){
+    const o = opensAt(n);
+    if(o && Date.now() >= o.getTime()){
+      body = '<div class="lockbox"><p class="lock-title">This day is ready</p><p class="muted">Tap below to open it.</p><button type="button" class="btn" id="reloadCourse">Open Day ' + n + '</button></div>';
+    } else {
+      body = '<div class="lockbox"><p class="lock-title">🗓️ Opens ' + esc(fmtOpen(o)) + '</p><p class="muted">A new day opens every morning. Come back then!</p></div><a class="btn btn-ghost" href="#/day/' + currentDay() + '">Continue with Day ' + currentDay() + '</a>';
+    }
+  } else {
+    body = '<div class="lockbox"><p class="lock-title">🔒 Part of the full course</p><p>' + (USER ? 'You have tried ' + freeDaysText() + ' for free. ' : '') + 'To continue with all 10 days, message ' + esc(TEACHER.first) + ' on Telegram to join the full marathon. After you join, a new day opens every morning.</p><a class="btn" href="' + TG_URL + '" target="_blank" rel="noopener">Join the full course on Telegram</a></div>';
+  }
+  app.innerHTML = '<div class="day-head"><a class="back" href="#/">← All days</a><p class="day-meta">Day ' + n + ' of 10, ' + esc(m.topic) + '</p><h1>' + esc(m.title) + '</h1><p class="sub">' + esc(m.summary) + '</p></div>' + body;
+  const rb = $("#reloadCourse");
+  if(rb) rb.addEventListener("click", async ()=>{ rb.disabled = true; await loadCourse(); route(); });
+}
+
+/* Teacher: approve or remove a student's access */
+function accessCell(s){
+  return s.approved_at
+    ? '<span class="pill ok">Full course</span> <button type="button" class="linkbtn js-access" data-id="' + s.id + '" data-grant="0">Remove</button><br><span class="muted small">since ' + fmtDate(s.approved_at) + '</span>'
+    : '<span class="pill">Free trial</span> <button type="button" class="btn btn-sm js-access" data-id="' + s.id + '" data-grant="1">Approve</button>';
+}
+async function setAccess(id, grant, btn){
+  btn.disabled = true;
+  const r = await db.rpc("set_student_access", {student:id, has_access:grant});
+  if(r.error){ btn.disabled = false; toast("Could not change access. Check your internet and try again."); return; }
+  const s = TDATA && TDATA.byId[id];
+  if(s) s.approved_at = r.data;
+  toast(grant ? ((s && s.full_name) || "The student") + " now has the full course. Day " + (COURSE.free_days + 1) + " opens tomorrow morning." : "Access removed.");
+  route();
+}
+document.addEventListener("click", e=>{
+  const b = e.target.closest(".js-access"); if(!b) return;
+  const grant = b.dataset.grant === "1";
+  if(!grant && b.dataset.armed !== "1"){
+    b.dataset.armed = "1"; b.textContent = "Tap again to remove";
+    setTimeout(()=>{ if(document.body.contains(b)){ b.dataset.armed = ""; b.textContent = "Remove"; } }, 4000);
+    return;
+  }
+  setAccess(b.dataset.id, grant, b);
+});
 
 /* =========================================================
    LOGIN, REGISTER, PASSWORD PAGES
@@ -1354,7 +1312,7 @@ async function renderTeacher(id){
     app.innerHTML = '<h1>Teacher dashboard</h1><p class="muted">Loading student results…</p>';
     try{
       const res = await Promise.all([
-        fetchAll("profiles", "id,full_name,email,created_at", ["id"]),
+        fetchAll("profiles", "id,full_name,email,created_at,approved_at", ["id"]),
         fetchAll("quiz_attempts", "id,student_id,day,quiz_type,score,total,submitted_at", ["id"]),
         fetchAll("step_progress", "student_id,day,step,completed_at", ["student_id", "day", "step"])
       ]);
@@ -1374,20 +1332,22 @@ function teacherList(){
   const students = TDATA.students, week = Date.now() - 7*864e5;
   const active = students.filter(s=>s.last && new Date(s.last).getTime() > week).length;
   const attempts = students.reduce((a,s)=>a + s.att.length, 0);
+  const paid = students.filter(s=>s.approved_at).length;
   app.innerHTML = `
     <div class="t-head"><h1>Teacher dashboard</h1><button type="button" class="btn btn-ghost" id="tRefresh">Refresh</button></div>
     <p class="muted small">Updated ${fmtDate(TDATA.loadedAt)}. Only you can see this page.</p>
     <div class="stats">
       <div class="stat"><b>${students.length}</b><span>registered students</span></div>
+      <div class="stat"><b>${paid}</b><span>full-course students</span></div>
       <div class="stat"><b>${active}</b><span>active in the last 7 days</span></div>
       <div class="stat"><b>${attempts}</b><span>quiz attempts</span></div>
     </div>
     ${students.length ? `<input class="input" id="tSearch" type="search" placeholder="Search by name or email" aria-label="Search students">
     <div class="tscroll" style="margin-top:16px"><table class="tt">
-      <thead><tr><th>Student</th><th>Days 1–10</th><th>Days complete</th><th>Reading (avg best)</th><th>Vocabulary (avg best)</th><th>Attempts</th><th>Last active</th></tr></thead>
+      <thead><tr><th>Student</th><th>Access</th><th>Days 1–10</th><th>Days complete</th><th>Reading (avg best)</th><th>Vocabulary (avg best)</th><th>Attempts</th><th>Last active</th></tr></thead>
       <tbody id="tBody"></tbody>
     </table></div>
-    <p class="muted small">Each bar is one day and fills up as the student completes its 5 steps. Tap a name to see every score.</p>` : '<p class="muted">No students have registered yet. When they do, they will appear here.</p>'}`;
+    <p class="muted small">Each bar is one day and fills up as the student completes its 5 steps. Tap a name to see every score. Tap <b>Approve</b> after a student pays: Day ${COURSE.free_days + 1} opens for them the next morning, then one new day each morning.</p>` : '<p class="muted">No students have registered yet. When they do, they will appear here.</p>'}`;
   $("#tRefresh").addEventListener("click", ()=>{ TDATA = null; route(); });
   if(!students.length) return;
   const body = $("#tBody");
@@ -1395,9 +1355,10 @@ function teacherList(){
     const list = students.filter(s=>!q || ((s.full_name||"") + " " + (s.email||"")).toLowerCase().includes(q));
     body.innerHTML = list.length ? list.map(s=>`<tr>
       <td><a href="#/teacher/${s.id}">${esc(s.full_name || "(no name)")}</a><br><span class="muted small">${esc(s.email || "")}</span></td>
+      <td>${accessCell(s)}</td>
       <td><span class="pgrid" role="img" aria-label="${s.stepsDone} of 50 steps done">${s.days.map(d=>'<i title="Day ' + d.n + ': ' + d.done + '/5"><b style="--h:' + (d.done*20) + '%"></b></i>').join("")}</span></td>
       <td>${s.daysComplete}/10</td><td>${pct(s.readingAvg)}</td><td>${pct(s.vocabAvg)}</td><td>${s.att.length}</td>
-      <td>${s.last ? fmtDate(s.last) : '<span class="muted">–</span>'}</td></tr>`).join("") : '<tr><td colspan="7" class="muted">No students match your search.</td></tr>';
+      <td>${s.last ? fmtDate(s.last) : '<span class="muted">–</span>'}</td></tr>`).join("") : '<tr><td colspan="8" class="muted">No students match your search.</td></tr>';
   };
   draw("");
   $("#tSearch").addEventListener("input", e=>draw(e.target.value.trim().toLowerCase()));
@@ -1412,6 +1373,7 @@ function teacherStudent(id){
     <a class="back" href="#/teacher">← All students</a>
     <h1>${esc(s.full_name || "(no name)")}</h1>
     <p class="muted">${esc(s.email || "")}. Joined ${fmtDate(s.created_at)}. Last active ${s.last ? fmtDate(s.last) : "never"}.</p>
+    <p>${accessCell(s)}</p>
     <div class="stats">
       <div class="stat"><b>${s.daysComplete}/10</b><span>days complete</span></div>
       <div class="stat"><b>${s.stepsDone}/50</b><span>steps done</span></div>
@@ -1421,7 +1383,7 @@ function teacherStudent(id){
     <p class="muted small">Steps: A article, V vocabulary, R reading, W writing, S speaking.</p>
     <div class="tscroll"><table class="tt">
       <thead><tr><th>Day</th><th>Steps</th><th>Reading best</th><th>Vocabulary best</th></tr></thead>
-      <tbody>${s.days.map(d=>{ const day = getDay(d.n) || PLANNED.find(x=>x.n===d.n); return '<tr><td><strong>' + d.n + '</strong> ' + esc(day ? day.title : "") + '</td><td>' + ticks(d.st) + '</td><td>' + qcell(d.reading) + '</td><td>' + qcell(d.vocab) + '</td></tr>'; }).join("")}</tbody>
+      <tbody>${s.days.map(d=>{ const day = META_BY[d.n]; return '<tr><td><strong>' + d.n + '</strong> ' + esc(day ? day.title : "") + '</td><td>' + ticks(d.st) + '</td><td>' + qcell(d.reading) + '</td><td>' + qcell(d.vocab) + '</td></tr>'; }).join("")}</tbody>
     </table></div>
     <h2 style="margin-top:40px">All quiz attempts</h2>
     ${att.length ? `<div class="tscroll"><table class="tt">
