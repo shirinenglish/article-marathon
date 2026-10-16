@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>10-Day Article Marathon</title>
+<title>15-Day Article Marathon</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Literata:opsz,wght@7..72,400;7..72,600;7..72,700&display=swap" rel="stylesheet">
@@ -72,12 +72,12 @@ footer{max-width:1080px;margin:0 auto;padding:24px 20px 40px;border-top:1px soli
 .lede{font-size:clamp(1.08rem,2.4vw,1.25rem);color:var(--ink-soft);max-width:54ch;margin:0}
 .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
 
-.route{list-style:none;margin:40px 0 32px;padding:0;display:grid;grid-template-columns:repeat(10,1fr);row-gap:22px}
+.route{list-style:none;margin:40px 0 32px;padding:0;display:grid;grid-template-columns:repeat(5,1fr);row-gap:22px;max-width:760px}
 .route li{position:relative;text-align:center}
 .route li::before{content:"";position:absolute;top:21px;left:0;right:0;height:2px;background:var(--line)}
 .route li.done::before{background:var(--pine)}
-.route li:first-child::before{left:50%}
-.route li:last-child::before{right:50%}
+.route li:nth-child(5n+1)::before{left:50%}
+.route li:nth-child(5n)::before{right:50%}
 .stop{position:relative;display:inline-flex;flex-direction:column;align-items:center;gap:8px;text-decoration:none;color:var(--ink-soft);font-size:.82rem;font-weight:500;padding:0 2px;max-width:100%}
 .dot{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--surface);border:2px solid var(--line);font:700 1rem var(--serif);color:var(--ink)}
 .done .dot{background:var(--pine);border-color:var(--pine);color:var(--on-pine)}
@@ -147,6 +147,25 @@ a.dl-row:hover{background:var(--mist)}
 .lock-title{font:600 1.3rem var(--serif);margin:0 0 8px !important}
 .btn-sm{min-height:34px;padding:0 12px;font-size:.88rem;border-radius:9px}
 .linkbtn{border:0;background:none;color:var(--bad);font:600 .85rem var(--sans);cursor:pointer;padding:4px 2px}
+
+.passage{max-width:720px;margin:6px 0 18px;padding:16px 18px;border-left:4px solid var(--sage);background:var(--surface);border-radius:0 12px 12px 0;font:1.04rem/1.75 var(--serif)}
+.passage p{margin:0 0 .8em}
+.passage .gapno{font:700 .9rem var(--sans);color:var(--pine);white-space:nowrap}
+.headlist{list-style:none;margin:0;padding:0;font-family:var(--sans);font-size:.98rem}
+.headlist li{padding:5px 0;border-bottom:1px dashed var(--line)}
+.headlist b{display:inline-block;width:1.8em;color:var(--pine)}
+.q-in{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;padding-left:38px}
+.q-in .input{max-width:280px;min-height:44px}
+.input.correct{border-color:var(--ok);background:var(--ok-soft)}
+.input.wrong{border-color:var(--bad);background:var(--bad-soft)}
+select.input{appearance:auto;padding:0 10px}
+.message{white-space:pre-line;max-width:720px;margin:10px 0 0;padding:16px 18px;border-left:4px solid var(--pine);background:var(--surface);border-radius:0 12px 12px 0;font:1.02rem/1.65 var(--serif)}
+.wtask{margin:34px 0 0;max-width:820px}
+.wtask h3{margin-bottom:6px}
+.wtask textarea{min-height:220px}
+.wtask.big textarea{min-height:340px}
+.phr-h{font:600 .85rem var(--sans);color:var(--ink-soft);text-transform:uppercase;letter-spacing:.04em;margin:12px 16px 2px}
+@media (max-width:760px){ .q-in{padding-left:0} }
 
 /* Teacher dashboard */
 .t-head{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
@@ -296,9 +315,6 @@ textarea:focus,.input:focus{border-color:var(--pine);outline:none;box-shadow:0 0
 @media (max-width:760px){
   body{font-size:16.5px}
   .steps{grid-template-columns:1fr 1fr}
-  .route{grid-template-columns:repeat(5,1fr)}
-  .route li:nth-child(5)::before{right:50%}
-  .route li:nth-child(6)::before{left:50%}
   .stop-label{font-size:.74rem}
   .article{font-size:1.08rem;padding-left:1.7em}
   .pn{left:-2em}
@@ -317,7 +333,7 @@ textarea:focus,.input:focus{border-color:var(--pine);outline:none;box-shadow:0 0
 <div class="banner" id="storageBanner" hidden>This browser is blocking saved data (for example, in private mode), so you may need to log in again each time you open the course.</div>
 <header class="topbar">
   <div class="topbar-in">
-    <a class="brand" href="#/">Article Marathon<span class="long"> · 10 days</span></a>
+    <a class="brand" href="#/">Article Marathon<span class="long"> · 15 days</span></a>
     <nav class="nav" aria-label="Main">
       <a href="#/" data-nav="home">Days</a>
       <a href="#/progress" data-nav="progress">Progress</a>
@@ -366,8 +382,14 @@ const META = [
   {n:7, short:"Silk Road", title:"The Silk Road, Then and Now", topic:"History and our region", summary:"How an ancient network of trade routes shaped Central Asia, and why it matters again today."},
   {n:8, short:"Food waste", title:"Food Waste: A Global Problem", topic:"Environment and everyday life", summary:"Why so much food is thrown away, and simple ways to waste less."},
   {n:9, short:"AI", title:"Artificial Intelligence in Everyday Life", topic:"Technology and the future", summary:"Where AI already helps us, where it makes mistakes, and how to use it wisely."},
-  {n:10, short:"Habits", title:"The Science of Habits", topic:"Psychology and learning", summary:"How habits form, why they are hard to break, and how to build good ones."}
+  {n:10, short:"Habits", title:"The Science of Habits", topic:"Psychology and learning", summary:"How habits form, why they are hard to break, and how to build good ones."},
+  {n:11, short:"Online", title:"Online Learning or the Classroom?", topic:"Education", summary:"What we gain and what we lose when lessons move from the classroom to the screen."},
+  {n:12, short:"Volunteers", title:"Why Helping Others Makes Us Happier", topic:"Society and wellbeing", summary:"What science says about volunteering, kindness and our own happiness."},
+  {n:13, short:"Space", title:"Space Exploration: Worth the Cost?", topic:"Science and the future", summary:"Billions are spent on reaching the Moon and Mars. Is it money well spent?"},
+  {n:14, short:"Sport", title:"How Sport Protects Our Mental Health", topic:"Health and lifestyle", summary:"Why exercise is good for the mind as well as the body."},
+  {n:15, short:"Electric", title:"Electric Cars and the Future of Transport", topic:"Technology and environment", summary:"Are electric cars the answer to pollution in our cities, or only part of it?"}
 ];
+const TOTAL_DAYS = META.length;
 const META_BY = {}; META.forEach(m=>{ META_BY[m.n] = m; });
 let DAYS = [];   /* filled after login with the days this person may open */
 let COURSE = {published:[], free_days:1, unlock_hour:6, approved_at:null, is_teacher:false};
@@ -487,34 +509,54 @@ document.addEventListener("click", e=>{
 document.addEventListener("keydown", e=>{ if(e.key==="Escape") hideDef(); });
 
 /* Generic auto-marked quiz */
+function normAns(v){ return String(v||"").toLowerCase().replace(/[’`]/g,"'").replace(/[^a-z0-9' -]/g," ").replace(/\s+/g," ").trim(); }
 function quizHTML(id, groups){
   let k = 0, h = '<div class="quiz" id="' + id + '">';
   groups.forEach(g=>{
     h += '<h3 class="q-group">' + esc(g.title) + '</h3>';
     if(g.intro) h += '<p class="muted small">' + esc(g.intro) + '</p>';
+    if(g.passage) h += '<div class="passage">' + g.passage + '</div>';
     g.qs.forEach(q=>{
-      const n = k++;
-      h += '<fieldset class="q" data-q="' + n + '"><legend><span class="qn">' + (n+1) + '</span><span>' + q.prompt + '</span></legend><div class="opts' + (q.options.length===3?' opts-row':'') + '">';
-      q.options.forEach((o,j)=>{ h += '<label class="opt"><input type="radio" name="' + id + '-' + n + '" value="' + j + '"><span>' + esc(o) + '</span></label>'; });
-      h += '</div><p class="q-feedback" hidden></p></fieldset>';
+      const n = k++, name = id + '-' + n;
+      h += '<fieldset class="q" data-q="' + n + '"><legend><span class="qn">' + (n+1) + '</span><span>' + q.prompt + '</span></legend>';
+      if(q.kind === "text"){
+        h += '<div class="q-in"><input class="input q-field" name="' + name + '" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="Answer ' + (n+1) + '"' + (q.placeholder ? ' placeholder="' + esc(q.placeholder) + '"' : '') + '></div>';
+      } else if(q.kind === "select"){
+        h += '<div class="q-in"><select class="input q-field" name="' + name + '" aria-label="Answer ' + (n+1) + '"><option value="">Choose…</option>' + q.options.map((o,j)=>'<option value="' + j + '">' + esc(o) + '</option>').join("") + '</select></div>';
+      } else {
+        h += '<div class="opts' + (q.options.length===3?' opts-row':'') + '">';
+        q.options.forEach((o,j)=>{ h += '<label class="opt"><input type="radio" name="' + name + '" value="' + j + '"><span>' + esc(o) + '</span></label>'; });
+        h += '</div>';
+      }
+      h += '<p class="q-feedback" hidden></p></fieldset>';
     });
   });
   h += '<div class="score" hidden></div><button type="button" class="btn js-check">Check answers</button><p class="quiz-msg" role="status"></p></div>';
   return h;
 }
+
 function wireQuiz(id, qs, onDone){
   const root = document.getElementById(id), btn = root.querySelector(".js-check"), msg = root.querySelector(".quiz-msg"), sc = root.querySelector(".score");
+  const field = i=>root.querySelector('[name="' + id + '-' + i + '"].q-field');
+  const getAns = (q,i)=>{
+    if(q.kind === "text"){ const v = field(i).value.trim(); return v ? v : null; }
+    if(q.kind === "select"){ const v = field(i).value; return v === "" ? null : +v; }
+    const el = root.querySelector('input[name="' + id + '-' + i + '"]:checked'); return el ? +el.value : null;
+  };
+  const isRight = (q,a)=> q.kind === "text" ? q.accept.map(normAns).includes(normAns(a)) : a === q.answer;
+  const rightText = q=> q.kind === "text" ? q.accept[0] : q.options[q.answer];
   btn.addEventListener("click", ()=>{
     if(root.dataset.checked==="1"){
       root.dataset.checked = "";
       root.querySelectorAll(".q").forEach(f=>{ f.classList.remove("is-right","is-wrong"); f.querySelector(".q-feedback").hidden = true; });
       root.querySelectorAll(".opt").forEach(l=>l.classList.remove("correct","wrong"));
-      root.querySelectorAll("input").forEach(i=>{ i.disabled = false; i.checked = false; });
+      root.querySelectorAll("input[type=radio]").forEach(i=>{ i.disabled = false; i.checked = false; });
+      root.querySelectorAll(".q-field").forEach(f=>{ f.disabled = false; f.value = ""; f.classList.remove("correct","wrong"); });
       sc.hidden = true; btn.textContent = "Check answers"; msg.textContent = "";
       root.scrollIntoView({behavior:smooth, block:"start"});
       return;
     }
-    const ans = qs.map((q,i)=>{ const el = root.querySelector('input[name="' + id + '-' + i + '"]:checked'); return el ? +el.value : null; });
+    const ans = qs.map(getAns);
     const missing = ans.filter(a=>a===null).length;
     if(missing){
       msg.textContent = "Answer every question before checking. " + missing + (missing===1?" question is":" questions are") + " still empty.";
@@ -523,16 +565,20 @@ function wireQuiz(id, qs, onDone){
     }
     let score = 0;
     qs.forEach((q,i)=>{
-      const f = root.querySelector('[data-q="' + i + '"]'), ok = ans[i]===q.answer;
+      const f = root.querySelector('[data-q="' + i + '"]'), ok = isRight(q, ans[i]);
       if(ok) score++;
       f.classList.add(ok ? "is-right" : "is-wrong");
-      f.querySelectorAll("input").forEach(inp=>{
-        inp.disabled = true;
-        if(+inp.value===q.answer) inp.parentElement.classList.add("correct");
-        else if(inp.checked) inp.parentElement.classList.add("wrong");
-      });
+      if(q.kind === "text" || q.kind === "select"){
+        const el = field(i); el.disabled = true; el.classList.add(ok ? "correct" : "wrong");
+      } else {
+        f.querySelectorAll("input").forEach(inp=>{
+          inp.disabled = true;
+          if(+inp.value===q.answer) inp.parentElement.classList.add("correct");
+          else if(inp.checked) inp.parentElement.classList.add("wrong");
+        });
+      }
       const fb = f.querySelector(".q-feedback"); fb.hidden = false;
-      fb.textContent = (ok ? "Correct. " : "Correct answer: " + q.options[q.answer] + ". ") + (q.note || "");
+      fb.textContent = (ok ? "Correct. " : "Correct answer: " + rightText(q) + ". ") + (q.note || "");
     });
     root.dataset.checked = "1"; btn.textContent = "Try again"; msg.textContent = "";
     const extra = onDone(score, qs.length), pct = score/qs.length;
@@ -544,6 +590,7 @@ function wireQuiz(id, qs, onDone){
     sc.hidden = false; sc.scrollIntoView({behavior:smooth, block:"center"});
   });
 }
+
 function saveScore(n, key, score, total){
   const d = ds(n), r = d[key] || (d[key] = {});
   r.last = score; r.total = total; r.best = Math.max(r.best||0, score); r.attempts = (r.attempts||0) + 1;
@@ -556,8 +603,8 @@ function saveScore(n, key, score, total){
    PAGES
    ========================================================= */
 function routeHTML(cur){
-  let h = '<ol class="route" aria-label="Your 10-day route">';
-  for(let n=1; n<=10; n++){
+  let h = '<ol class="route" aria-label="Your 15-day route">';
+  for(let n=1; n<=TOTAL_DAYS; n++){
     const m = META_BY[n], st = dayState(n), open = st === "open";
     const cls = open ? (dayComplete(n) ? "done" : n===cur ? "current" : "") : "soon";
     const inner = '<span class="dot">' + (open && dayComplete(n) ? "✓" : n) + '</span><span class="stop-label">' + esc(m.short) + '</span>';
@@ -569,7 +616,7 @@ function routeHTML(cur){
 function renderHome(){
   const cur = currentDay(), started = Object.keys(S.days).length > 0;
   let rows = "";
-  for(let n=1; n<=10; n++){
+  for(let n=1; n<=TOTAL_DAYS; n++){
     const d = getDay(n), m = META_BY[n], st = dayState(n);
     if(d){
       const c = doneCount(n);
@@ -584,8 +631,8 @@ function renderHome(){
   }
   app.innerHTML = `
   <section class="hero">
-    <h1>10-Day Article Marathon</h1>
-    <p class="lede">Ten days, ten articles about the real world, and one focused practice session each day. Day 1 is free to try. Build your reading, vocabulary, writing and speaking at B1–B2 level, and walk into the CEFR Multilevel exam with confidence.</p>
+    <h1>15-Day Article Marathon</h1>
+    <p class="lede">Fifteen days, fifteen articles about the real world, and one focused practice session each day. Day 1 is free to try. Build your reading, vocabulary, writing and speaking at B1–B2 level, and walk into the CEFR Multilevel exam with confidence.</p>
     <p class="byline"><img src="${TEACHER.photo}" alt="" width="44" height="44"><span>With your teacher, <strong>${TEACHER.name}</strong></span></p>
     ${routeHTML(cur)}
     <div class="hero-actions">
@@ -593,7 +640,7 @@ function renderHome(){
       <a class="btn btn-ghost btn-lg" href="#/progress">See my progress</a>` : `<a class="btn btn-lg" href="#/register">Start learning</a>
       <a class="btn btn-ghost btn-lg" href="#/login">I already have an account</a>`}
     </div>
-    ${USER && !IS_TEACHER && !COURSE.approved_at && COURSE.published.some(x=>x > COURSE.free_days) ? `<div class="trial-box"><p><strong>You are on the free trial.</strong> ${freeDaysText()} is open for you. To unlock all 10 days, message ${esc(TEACHER.first)} on Telegram.</p><a class="btn" href="${TG_URL}" target="_blank" rel="noopener">Get the full course</a></div>` : ""}
+    ${USER && !IS_TEACHER && !COURSE.approved_at && COURSE.published.some(x=>x > COURSE.free_days) ? `<div class="trial-box"><p><strong>You are on the free trial.</strong> ${freeDaysText()} is open for you. To unlock all 15 days, message ${esc(TEACHER.first)} on Telegram.</p><a class="btn" href="${TG_URL}" target="_blank" rel="noopener">Get the full course</a></div>` : ""}
     ${USER && !IS_TEACHER && COURSE.approved_at ? `<p class="muted small" style="margin-top:18px">✓ Full course. A new day opens every morning at ${String(COURSE.unlock_hour).padStart(2,"0")}:00 (Tashkent time).</p>` : ""}
   </section>
 
@@ -601,7 +648,7 @@ function renderHome(){
     <img class="teacher-photo" src="${TEACHER.photo}" alt="${TEACHER.name}" width="150" height="150">
     <div>
       <h2 id="teacherName">${TEACHER.name}</h2>
-      <p>Hi, I'm ${TEACHER.first}, an English teacher who prepares students for the CEFR Multilevel exam. I'll be with you for all ten days of the marathon. If you have a question, or want me to check your writing, message me on Telegram.</p>
+      <p>Hi, I'm ${TEACHER.first}, an English teacher who prepares students for the CEFR Multilevel exam. I'll be with you for all fifteen days of the marathon. If you have a question, or want me to check your writing, message me on Telegram.</p>
       <a class="btn" href="${TG_URL}" target="_blank" rel="noopener">Message me on Telegram</a>
     </div>
   </section>
@@ -628,7 +675,7 @@ function renderHome(){
   </section>
 
   <section class="section">
-    <h2>The ten days</h2>
+    <h2>The fifteen days</h2>
     <ul class="daylist">${rows}</ul>
   </section>`;
 }
@@ -640,7 +687,7 @@ function renderDay(n, tab){
   app.innerHTML = `
   <div class="day-head">
     <a class="back" href="#/">← All days</a>
-    <p class="day-meta">Day ${n} of 10, ${esc(d.topic)}</p>
+    <p class="day-meta">Day ${n} of ${TOTAL_DAYS}, ${esc(d.topic)}</p>
     <h1>${esc(d.title)}</h1>
     <p class="sub">${esc(d.summary)}</p>
   </div>
@@ -699,6 +746,7 @@ function pVocab(d, panel){
 }
 
 function pReading(d, panel){
+  if(d.reading) return pReadingCEFR(d, panel);
   const TF = ["True","False","Not given"], TFI = {T:0, F:1, NG:2};
   const mcq = d.mcq.map(q=>({prompt:esc(q.q), options:q.o, answer:q.a, note:"See paragraph " + q.p + "."}));
   const tf = d.tf.map(q=>({prompt:esc(q.s), options:TF, answer:TFI[q.a], note:"See paragraph " + q.p + "."}));
@@ -752,6 +800,7 @@ function feedbackHTML(d, text, self){
 }
 
 function pWriting(d, panel){
+  if(d.writing && d.writing.part) return pWritingCEFR(d, panel);
   const w = d.writing, st = (S.days[d.n]||{}).writing || {};
   panel.innerHTML = `
     <section class="task">
@@ -788,7 +837,7 @@ function pWriting(d, panel){
   });
   $("#wcopy").addEventListener("click", async ()=>{
     if(!ta.value.trim()){ msg.textContent = "Write your answer first, then copy it."; return; }
-    const txt = "10-Day Article Marathon: writing\nStudent: " + studentName() + "\nDay " + d.n + ": " + d.title + "\nTask: " + w.task + "\nWords: " + countWords(ta.value) + "\n\nAnswer:\n" + ta.value;
+    const txt = "15-Day Article Marathon: writing\nStudent: " + studentName() + "\nDay " + d.n + ": " + d.title + "\nTask: " + w.task + "\nWords: " + countWords(ta.value) + "\n\nAnswer:\n" + ta.value;
     let ok = false;
     try{ await navigator.clipboard.writeText(txt); ok = true; }catch(e){
       try{ const h = document.createElement("textarea"); h.value = txt; h.style.position = "fixed"; h.style.opacity = "0"; document.body.appendChild(h); h.select(); ok = document.execCommand("copy"); h.remove(); }catch(e2){}
@@ -798,6 +847,180 @@ function pWriting(d, panel){
   });
   upd();
   if(st.submitted && st.text) showFb();
+}
+
+const LETTERS = "ABCDEFGHIJ";
+function gapPassage(text, offset){
+  return text.split(/\n+/).map(par=>'<p>' + esc(par).replace(/\{(\d+)\}/g, (_,k)=>'<span class="gapno">(' + (offset + +k) + ') ______</span>') + '</p>').join("");
+}
+function pReadingCEFR(d, panel){
+  const R = d.reading, groups = [];
+  let offset = 0;
+  if(R.gap){
+    groups.push({title:"Part 1: Gap-filling", intro:"Read the text. Fill in each gap with ONE word. You must use a word which is somewhere in the rest of the text.", passage:gapPassage(R.gap.text, offset),
+      qs:R.gap.answers.map(a=>({kind:"text", prompt:"One word", accept:a}))});
+    offset += R.gap.answers.length;
+  }
+  if(R.headings){
+    groups.push({title:"Part 2: Paragraph headings", intro:"Read the article. Choose the correct heading for each paragraph. There are more headings than paragraphs, so you will not use all of them.",
+      passage:'<ul class="headlist">' + R.headings.options.map((o,j)=>'<li><b>' + LETTERS[j] + '</b>' + esc(o) + '</li>').join("") + '</ul>',
+      qs:R.headings.answers.map((a,i)=>({kind:"select", prompt:"Paragraph " + (i+1), options:R.headings.options.map((o,j)=>LETTERS[j] + " – " + o), answer:a}))});
+    offset += R.headings.answers.length;
+  }
+  if(R.mcq){
+    groups.push({title:"Part 3: Multiple choice", intro:"Choose the correct answer A, B, C or D.",
+      qs:R.mcq.map(q=>({prompt:esc(q.q), options:q.o.map((o,j)=>LETTERS[j] + ") " + o), answer:q.a, note:"See paragraph " + q.p + "."}))});
+    offset += R.mcq.length;
+  }
+  if(R.tf){
+    const TFI = {T:0, F:1, NI:2};
+    groups.push({title:"Part 4: True, False or No Information", intro:"Decide if the statements agree with the information given in the article.",
+      qs:R.tf.map(q=>({prompt:esc(q.s), options:["True","False","No Information"], answer:TFI[q.a], note:"See paragraph " + q.p + "."}))});
+    offset += R.tf.length;
+  }
+  if(R.summary){
+    groups.push({title:"Part 5: Summary completion", intro:"Complete the summary. Write NO MORE THAN ONE WORD and/or A NUMBER for each gap.",
+      passage:(R.summary.title ? '<p><strong>' + esc(R.summary.title) + '</strong></p>' : '') + gapPassage(R.summary.text, offset),
+      qs:R.summary.answers.map(a=>({kind:"text", prompt:"One word and/or a number", accept:a}))});
+  }
+  const qs = [].concat.apply([], groups.map(g=>g.qs));
+  const prev = (S.days[d.n]||{}).reading;
+  const art = articleHTML(d);
+  panel.innerHTML = `
+    <div class="reading-layout">
+      <aside class="ref-wide" aria-label="Article"><div class="article">${art}</div></aside>
+      <div>
+        <details class="ref-narrow"><summary>Show the article</summary><div class="article">${art}</div></details>
+        ${prev && prev.last!=null ? '<p class="prev-score">Last score: ' + prev.last + '/' + prev.total + '. Best: ' + prev.best + '/' + prev.total + '.</p>' : ''}
+        ${quizHTML("rq" + d.n, groups)}
+      </div>
+    </div>
+    <div class="panel-foot"><span></span>${nextLink(d.n,"reading")}</div>`;
+  wireQuiz("rq" + d.n, qs, (s,t)=>saveScore(d.n, "reading", s, t));
+}
+
+const PHRASES = {
+  informal:[
+    ["Starting", ["Hi Aziz,", "Hope you're doing well!", "Thanks for your message. It was great to hear from you."]],
+    ["Feelings", ["I'm really excited about…", "To be honest, I'm a bit worried that…", "I was so happy to hear that…"]],
+    ["Suggestions", ["Why don't we…?", "I think the coordinator should…", "How about…?"]],
+    ["Ending", ["Can't wait to hear what you think!", "Write back soon!", "Take care, [your name]"]]
+  ],
+  formal:[
+    ["Starting", ["Dear Sir or Madam, / Dear Mr Karimov,", "I am writing with regard to your recent message about…"]],
+    ["Feelings", ["I was delighted to learn that…", "I am rather concerned that…", "I strongly support the idea of…"]],
+    ["Suggestions", ["I would like to suggest that…", "It would be helpful if…", "Another option would be to…"]],
+    ["Ending", ["I hope you will consider my suggestions.", "I look forward to hearing from you.", "Yours faithfully, (after Dear Sir or Madam)  /  Yours sincerely, (after a name)"]]
+  ],
+  forum:[
+    ["Giving your opinion", ["From my point of view, …", "I strongly believe that…", "In my view, …"]],
+    ["Reasons and examples", ["The main reason is that…", "For instance, …", "A good example of this is…"]],
+    ["The other side", ["Admittedly, some people argue that…", "On the other hand, …", "Although this is true, …"]],
+    ["Conclusion", ["All in all, …", "To sum up, I am convinced that…", "For these reasons, I believe…"]]
+  ]
+};
+const KIND_LABEL = {informal:"informal letter", formal:"formal letter", forum:"forum post"};
+function phrasesHTML(kind){
+  return PHRASES[kind].map(([h,list])=>'<p class="phr-h">' + esc(h) + '</p><ul>' + list.map(x=>'<li>' + esc(x) + '</li>').join("") + '</ul>').join("");
+}
+function writingTasks(d){
+  const w = d.writing;
+  return w.part === 1
+    ? [{key:"t11", label:"Task 1.1", kind:"informal", task:w.t11.task, min:w.t11.min, max:w.t11.max},
+       {key:"t12", label:"Task 1.2", kind:"formal", task:w.t12.task, min:w.t12.min, max:w.t12.max}]
+    : [{key:"t2", label:"Part 2", kind:"forum", task:w.task, min:w.min, max:w.max}];
+}
+const CONTRACTIONS = /\b(\w+n['’]t|i['’]m|you['’]re|we['’]re|they['’]re|it['’]s|that['’]s|there['’]s|what['’]s|let['’]s|i['’]ve|we['’]ve|you['’]ve|i['’]ll|we['’]ll|you['’]ll|i['’]d|we['’]d)\b/gi;
+function taskChecks(d, t, text){
+  const li = (ok, txt)=>'<li class="' + (ok?'y':'n') + '"><span class="ic">' + (ok?'✓':'!') + '</span><span>' + txt + '</span></li>';
+  const n = countWords(text), lines = text.trim().split(/\n+/).map(x=>x.trim()).filter(Boolean);
+  const first = lines[0] || "", end = lines.slice(-2).join(" ");
+  const out = [li(n>=t.min && n<=t.max, n + " words. The task asks for " + t.min + "–" + t.max + ".")];
+  if(t.kind === "informal"){
+    out.push(li(/^(hi|hello|hey|dear)\b/i.test(first), "Friendly greeting at the start, e.g. <i>Hi Aziz,</i>"));
+    out.push(li(/(best wishes|love|take care|see you|write (back )?soon|cheers|bye|talk soon|all the best|hugs)/i.test(end), "Friendly ending, e.g. <i>Write back soon!</i> or <i>Take care,</i>"));
+  } else if(t.kind === "formal"){
+    const found = Array.from(new Set((text.match(CONTRACTIONS) || []).map(x=>x.toLowerCase())));
+    out.push(li(/^dear\b/i.test(first), "Formal greeting, e.g. <i>Dear Sir or Madam,</i>"));
+    out.push(li(/(yours (faithfully|sincerely)|kind regards|best regards|regards)/i.test(end), "Formal ending, e.g. <i>Yours faithfully,</i>"));
+    out.push(li(!found.length, found.length ? "Avoid contractions in a formal letter: " + esc(found.join(", ")) : "No contractions. Good for a formal letter."));
+  } else {
+    const low = text.toLowerCase();
+    const linkers = LINKERS.filter(l=>new RegExp("(^|[^a-z])" + escRe(l) + "(?![a-z])").test(low));
+    out.push(li(lines.length >= 3, lines.length + (lines.length===1 ? " paragraph" : " paragraphs") + ". Aim for at least 3: introduction, body, conclusion."));
+    out.push(li(/(in my (view|opinion)|from my point of view|i (strongly )?(believe|think|feel)|personally)/i.test(text), "Your opinion is clear (e.g. <i>From my point of view…</i>)."));
+    out.push(li(/(for example|for instance|such as|a good example)/i.test(text), "You give examples (e.g. <i>For instance…</i>)."));
+    out.push(li(linkers.length >= 4, linkers.length ? "Linking words: " + esc(linkers.join(", ")) + "." : "No linking words found yet."));
+  }
+  const used = vocabUsed(d, text);
+  if(t.kind !== "informal") out.push(li(used.length >= 1, used.length ? "Today's words you used: " + esc(used.join(", ")) + "." : "Try to use a word from today's vocabulary."));
+  return '<div class="crit"><h3>' + t.label + ': ' + KIND_LABEL[t.kind] + '</h3><ul class="auto">' + out.join("") + '</ul></div>';
+}
+function selfCheckHTML(self){
+  return '<div class="criteria">' + RUBRIC.map(c=>'<div class="crit"><h3>' + c.title + '</h3><div class="selfcheck">' +
+    c.items.map((it,i)=>{ const key = c.k + i; return '<label><input type="checkbox" data-self="' + key + '"' + (self && self[key] ? ' checked' : '') + '><span>' + esc(it) + '</span></label>'; }).join("") +
+    '</div></div>').join("") + '</div>';
+}
+function pWritingCEFR(d, panel){
+  const w = d.writing, tasks = writingTasks(d), st = (S.days[d.n]||{}).writing || {}, texts = st.texts || {};
+  const head = w.part === 1
+    ? '<section class="task"><p class="task-type">Part 1: ' + esc(w.title || "Letters") + '</p><p class="muted" style="margin:0"><em>' + esc(w.situation) + '</em></p><div class="message">' + esc(w.message) + '</div></section>'
+    : '<section class="task"><p class="task-type">Part 2: online forum, ' + w.min + '–' + w.max + ' words</p><p class="task-text">' + esc(w.task) + '</p></section>';
+  panel.innerHTML = head + tasks.map(t=>`
+    <section class="wtask${t.kind==="forum" ? " big" : ""}">
+      <h3>${t.label}: ${KIND_LABEL[t.kind]}, ${t.min}–${t.max} words</h3>
+      ${w.part === 1 ? '<p class="task-text" style="font-size:1.04rem">' + esc(t.task) + '</p>' : ''}
+      <details class="phrases"><summary>Useful language: ${KIND_LABEL[t.kind]}</summary>${phrasesHTML(t.kind)}</details>
+      <label class="field-label" for="w-${t.key}">Your answer</label>
+      <textarea id="w-${t.key}" data-key="${t.key}" spellcheck="false" placeholder="Start writing here. Spell-check is off, just like in the exam.">${esc(texts[t.key]||"")}</textarea>
+      <div class="wbar"><span class="count" id="c-${t.key}" aria-live="polite"></span></div>
+    </section>`).join("") + `
+    <div class="wbar"><span></span><span class="muted small" id="wsaved"></span></div>
+    <div class="btn-row">
+      <button type="button" class="btn" id="wcheck">Check my writing</button>
+      <button type="button" class="btn btn-ghost" id="wsave">Save draft</button>
+      <button type="button" class="btn btn-ghost" id="wcopy">Copy for my teacher</button>
+      <a class="btn btn-ghost" href="${TG_URL}" target="_blank" rel="noopener">Open Telegram</a>
+    </div>
+    <p class="quiz-msg" id="wmsg" role="status"></p>
+    <div id="wfb"></div>
+    <p class="note-box"><strong>How to send your writing to ${TEACHER.first}:</strong> tap “Copy for my teacher”, then “Open Telegram”, and paste it into a message to <a class="tg-link" href="${TG_URL}" target="_blank" rel="noopener">@${TEACHER.telegram}</a>. Your name, the day, the tasks and your answers are all included.</p>
+    <div class="panel-foot"><span></span>${nextLink(d.n,"writing")}</div>`;
+  const areas = tasks.map(t=>({t, ta:$("#w-" + t.key), cnt:$("#c-" + t.key)}));
+  const saved = $("#wsaved"), msg = $("#wmsg"), fb = $("#wfb");
+  const upd = a=>{ const c = countWords(a.ta.value); a.cnt.textContent = c + (c===1?" word":" words") + " (aim for " + a.t.min + "–" + a.t.max + ")"; a.cnt.className = "count " + (c<a.t.min ? "low" : c>a.t.max ? "high" : "ok"); };
+  const store = ()=>{
+    const s = ds(d.n); s.writing = s.writing || {}; s.writing.texts = s.writing.texts || {};
+    areas.forEach(a=>{ s.writing.texts[a.t.key] = a.ta.value; }); s.writing.savedAt = Date.now();
+    const ok = save(); saved.textContent = ok ? "Saved on this device at " + new Date().toLocaleTimeString([], {hour:"2-digit", minute:"2-digit"}) : "Couldn't save in this browser.";
+  };
+  let tmr;
+  areas.forEach(a=>{ upd(a); a.ta.addEventListener("input", ()=>{ upd(a); clearTimeout(tmr); tmr = setTimeout(store, 800); }); });
+  $("#wsave").addEventListener("click", store);
+  const showFb = ()=>{
+    fb.innerHTML = '<h2>Your feedback</h2><p class="muted">The first lines are checked automatically. Then read your writing again and tick what is true.</p><div class="criteria">' +
+      areas.map(a=>taskChecks(d, a.t, a.ta.value)).join("") + '</div><h3 style="margin-top:28px">Check yourself</h3>' + selfCheckHTML((ds(d.n).writing||{}).self);
+    fb.querySelectorAll("[data-self]").forEach(cb=>cb.addEventListener("change", ()=>{ const s = ds(d.n).writing; s.self = s.self || {}; s.self[cb.dataset.self] = cb.checked; save(); }));
+  };
+  $("#wcheck").addEventListener("click", ()=>{
+    const short = areas.filter(a=>countWords(a.ta.value) < (a.t.kind === "informal" ? 20 : 30));
+    if(short.length){ msg.textContent = "Write a little more first: " + short.map(a=>a.t.label).join(" and ") + (short.length===1 ? " is" : " are") + " too short to check."; return; }
+    msg.textContent = ""; store(); ds(d.n).writing.submitted = true; ds(d.n).writing.submittedAt = Date.now(); save(); afterStep(d.n);
+    showFb(); fb.scrollIntoView({behavior:smooth, block:"start"});
+  });
+  $("#wcopy").addEventListener("click", async ()=>{
+    if(!areas.some(a=>a.ta.value.trim())){ msg.textContent = "Write your answer first, then copy it."; return; }
+    let txt = "15-Day Article Marathon: writing\nStudent: " + studentName() + "\nDay " + d.n + ": " + d.title + "\n";
+    if(w.part === 1) txt += "Situation: " + w.situation + "\n";
+    areas.forEach(a=>{ txt += "\n" + a.t.label + " (" + KIND_LABEL[a.t.kind] + ", " + countWords(a.ta.value) + " words)\nTask: " + a.t.task + "\n\n" + (a.ta.value.trim() || "(not written)") + "\n"; });
+    let ok = false;
+    try{ await navigator.clipboard.writeText(txt); ok = true; }catch(e){
+      try{ const h = document.createElement("textarea"); h.value = txt; h.style.position = "fixed"; h.style.opacity = "0"; document.body.appendChild(h); h.select(); ok = document.execCommand("copy"); h.remove(); }catch(e2){}
+    }
+    if(ok){ msg.textContent = ""; toast("Copied. Now tap Open Telegram and paste it in a message to " + TEACHER.first + "."); }
+    else { msg.textContent = "Your browser blocked copying. Select your text in each box, copy it, and send it to your teacher."; }
+  });
+  if(st.submitted && areas.some(a=>a.ta.value.trim())) showFb();
 }
 
 /* Speaking: timer and recorder */
@@ -900,7 +1123,7 @@ function pSpeaking(d, panel){
 function renderProgress(){
   const complete = DAYS.filter(d=>dayComplete(d.n)).length;
   let rows = "";
-  for(let n=1; n<=10; n++){
+  for(let n=1; n<=TOTAL_DAYS; n++){
     const d = getDay(n), m = META_BY[n], s = S.days[n] || {};
     if(!d){
       const st = dayState(n), label = st === "scheduled" ? "Opens " + fmtOpen(opensAt(n)) : st === "soon" ? "Coming soon" : "🔒 Full course";
@@ -913,8 +1136,8 @@ function renderProgress(){
   }
   app.innerHTML = `
     <h1>My progress</h1>
-    <p class="prog-big">${complete} of 10 days complete</p>
-    <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="10" aria-valuenow="${complete}"><span style="width:${complete*10}%"></span></div>
+    <p class="prog-big">${complete} of ${TOTAL_DAYS} days complete</p>
+    <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="${TOTAL_DAYS}" aria-valuenow="${complete}"><span style="width:${Math.round(complete*100/TOTAL_DAYS)}%"></span></div>
     <div class="account"><p><strong>${esc(studentName())}</strong><br><span class="muted small">${esc(USER.email||"")}</span></p><button type="button" class="btn btn-ghost" id="logout">Log out</button></div>
     ${S.outbox.length ? '<p class="notice">' + S.outbox.length + (S.outbox.length===1 ? ' result has' : ' results have') + ' not been sent to your account yet. <button type="button" class="btn btn-ghost" id="syncNow">Send now</button></p>' : ''}
     <ul class="plist">${rows}</ul>
@@ -1066,9 +1289,9 @@ function renderLocked(n){
       body = '<div class="lockbox"><p class="lock-title">🗓️ Opens ' + esc(fmtOpen(o)) + '</p><p class="muted">A new day opens every morning. Come back then!</p></div><a class="btn btn-ghost" href="#/day/' + currentDay() + '">Continue with Day ' + currentDay() + '</a>';
     }
   } else {
-    body = '<div class="lockbox"><p class="lock-title">🔒 Part of the full course</p><p>' + (USER ? 'You have tried ' + freeDaysText() + ' for free. ' : '') + 'To continue with all 10 days, message ' + esc(TEACHER.first) + ' on Telegram to join the full marathon. After you join, a new day opens every morning.</p><a class="btn" href="' + TG_URL + '" target="_blank" rel="noopener">Join the full course on Telegram</a></div>';
+    body = '<div class="lockbox"><p class="lock-title">🔒 Part of the full course</p><p>' + (USER ? 'You have tried ' + freeDaysText() + ' for free. ' : '') + 'To continue with all 15 days, message ' + esc(TEACHER.first) + ' on Telegram to join the full marathon. After you join, a new day opens every morning.</p><a class="btn" href="' + TG_URL + '" target="_blank" rel="noopener">Join the full course on Telegram</a></div>';
   }
-  app.innerHTML = '<div class="day-head"><a class="back" href="#/">← All days</a><p class="day-meta">Day ' + n + ' of 10, ' + esc(m.topic) + '</p><h1>' + esc(m.title) + '</h1><p class="sub">' + esc(m.summary) + '</p></div>' + body;
+  app.innerHTML = '<div class="day-head"><a class="back" href="#/">← All days</a><p class="day-meta">Day ' + n + ' of ' + TOTAL_DAYS + ', ' + esc(m.topic) + '</p><h1>' + esc(m.title) + '</h1><p class="sub">' + esc(m.summary) + '</p></div>' + body;
   const rb = $("#reloadCourse");
   if(rb) rb.addEventListener("click", async ()=>{ rb.disabled = true; await loadCourse(); route(); });
 }
@@ -1293,7 +1516,7 @@ function buildTeacherData(profiles, attempts, steps){
   steps.forEach(r=>{ const s = byId[r.student_id]; if(!s) return; s.steps.add(r.day + ":" + r.step); if(!s.last || r.completed_at > s.last) s.last = r.completed_at; });
   students.forEach(s=>{
     s.days = [];
-    for(let n=1; n<=10; n++){
+    for(let n=1; n<=TOTAL_DAYS; n++){
       const st = STEPS.map(([k])=>s.steps.has(n + ":" + k));
       const q = t=>{ const xs = s.att.filter(a=>a.day===n && a.quiz_type===t); return xs.length ? {best:Math.max.apply(null, xs.map(a=>a.score)), total:xs[0].total, n:xs.length} : null; };
       s.days.push({n:n, st:st, done:st.filter(Boolean).length, reading:q("reading"), vocab:q("vocab")});
@@ -1344,7 +1567,7 @@ function teacherList(){
     </div>
     ${students.length ? `<input class="input" id="tSearch" type="search" placeholder="Search by name or email" aria-label="Search students">
     <div class="tscroll" style="margin-top:16px"><table class="tt">
-      <thead><tr><th>Student</th><th>Access</th><th>Days 1–10</th><th>Days complete</th><th>Reading (avg best)</th><th>Vocabulary (avg best)</th><th>Attempts</th><th>Last active</th></tr></thead>
+      <thead><tr><th>Student</th><th>Access</th><th>Days 1–15</th><th>Days complete</th><th>Reading (avg best)</th><th>Vocabulary (avg best)</th><th>Attempts</th><th>Last active</th></tr></thead>
       <tbody id="tBody"></tbody>
     </table></div>
     <p class="muted small">Each bar is one day and fills up as the student completes its 5 steps. Tap a name to see every score. Tap <b>Approve</b> after a student pays: Day ${COURSE.free_days + 1} opens for them the next morning, then one new day each morning.</p>` : '<p class="muted">No students have registered yet. When they do, they will appear here.</p>'}`;
@@ -1356,8 +1579,8 @@ function teacherList(){
     body.innerHTML = list.length ? list.map(s=>`<tr>
       <td><a href="#/teacher/${s.id}">${esc(s.full_name || "(no name)")}</a><br><span class="muted small">${esc(s.email || "")}</span></td>
       <td>${accessCell(s)}</td>
-      <td><span class="pgrid" role="img" aria-label="${s.stepsDone} of 50 steps done">${s.days.map(d=>'<i title="Day ' + d.n + ': ' + d.done + '/5"><b style="--h:' + (d.done*20) + '%"></b></i>').join("")}</span></td>
-      <td>${s.daysComplete}/10</td><td>${pct(s.readingAvg)}</td><td>${pct(s.vocabAvg)}</td><td>${s.att.length}</td>
+      <td><span class="pgrid" role="img" aria-label="${s.stepsDone} of ${TOTAL_DAYS*5} steps done">${s.days.map(d=>'<i title="Day ' + d.n + ': ' + d.done + '/5"><b style="--h:' + (d.done*20) + '%"></b></i>').join("")}</span></td>
+      <td>${s.daysComplete}/${TOTAL_DAYS}</td><td>${pct(s.readingAvg)}</td><td>${pct(s.vocabAvg)}</td><td>${s.att.length}</td>
       <td>${s.last ? fmtDate(s.last) : '<span class="muted">–</span>'}</td></tr>`).join("") : '<tr><td colspan="8" class="muted">No students match your search.</td></tr>';
   };
   draw("");
@@ -1375,8 +1598,8 @@ function teacherStudent(id){
     <p class="muted">${esc(s.email || "")}. Joined ${fmtDate(s.created_at)}. Last active ${s.last ? fmtDate(s.last) : "never"}.</p>
     <p>${accessCell(s)}</p>
     <div class="stats">
-      <div class="stat"><b>${s.daysComplete}/10</b><span>days complete</span></div>
-      <div class="stat"><b>${s.stepsDone}/50</b><span>steps done</span></div>
+      <div class="stat"><b>${s.daysComplete}/${TOTAL_DAYS}</b><span>days complete</span></div>
+      <div class="stat"><b>${s.stepsDone}/${TOTAL_DAYS*5}</b><span>steps done</span></div>
       <div class="stat"><b>${s.att.length}</b><span>quiz attempts</span></div>
     </div>
     <h2>Day by day</h2>
