@@ -857,32 +857,33 @@ function pReadingCEFR(d, panel){
   const R = d.reading, groups = [];
   let offset = 0;
   if(R.gap){
-    groups.push({title:"Part 1: Gap-filling", intro:"Read the text. Fill in each gap with ONE word. You must use a word which is somewhere in the rest of the text.", passage:gapPassage(R.gap.text, offset),
+    groups.push({title:"Gap-filling", intro:"Read the text. Fill in each gap with ONE word. You must use a word which is somewhere in the rest of the text.", passage:gapPassage(R.gap.text, offset),
       qs:R.gap.answers.map(a=>({kind:"text", prompt:"One word", accept:a}))});
     offset += R.gap.answers.length;
   }
   if(R.headings){
-    groups.push({title:"Part 2: Paragraph headings", intro:"Read the article. Choose the correct heading for each paragraph. There are more headings than paragraphs, so you will not use all of them.",
+    groups.push({title:"Paragraph headings", intro:"Read the article. Choose the correct heading for each paragraph. There are more headings than paragraphs, so you will not use all of them.",
       passage:'<ul class="headlist">' + R.headings.options.map((o,j)=>'<li><b>' + LETTERS[j] + '</b>' + esc(o) + '</li>').join("") + '</ul>',
       qs:R.headings.answers.map((a,i)=>({kind:"select", prompt:"Paragraph " + (i+1), options:R.headings.options.map((o,j)=>LETTERS[j] + " – " + o), answer:a}))});
     offset += R.headings.answers.length;
   }
   if(R.mcq){
-    groups.push({title:"Part 3: Multiple choice", intro:"Choose the correct answer A, B, C or D.",
+    groups.push({title:"Multiple choice", intro:"Choose the correct answer A, B, C or D.",
       qs:R.mcq.map(q=>({prompt:esc(q.q), options:q.o.map((o,j)=>LETTERS[j] + ") " + o), answer:q.a, note:"See paragraph " + q.p + "."}))});
     offset += R.mcq.length;
   }
   if(R.tf){
     const TFI = {T:0, F:1, NI:2};
-    groups.push({title:"Part 4: True, False or No Information", intro:"Decide if the statements agree with the information given in the article.",
+    groups.push({title:"True, False or No Information", intro:"Decide if the statements agree with the information given in the article.",
       qs:R.tf.map(q=>({prompt:esc(q.s), options:["True","False","No Information"], answer:TFI[q.a], note:"See paragraph " + q.p + "."}))});
     offset += R.tf.length;
   }
   if(R.summary){
-    groups.push({title:"Part 5: Summary completion", intro:"Complete the summary. Write NO MORE THAN ONE WORD and/or A NUMBER for each gap.",
+    groups.push({title:"Summary completion", intro:"Complete the summary. Write NO MORE THAN ONE WORD and/or A NUMBER for each gap.",
       passage:(R.summary.title ? '<p><strong>' + esc(R.summary.title) + '</strong></p>' : '') + gapPassage(R.summary.text, offset),
       qs:R.summary.answers.map(a=>({kind:"text", prompt:"One word and/or a number", accept:a}))});
   }
+  groups.forEach((g,i)=>{ g.title = "Part " + (i+1) + ": " + g.title; });
   const qs = [].concat.apply([], groups.map(g=>g.qs));
   const prev = (S.days[d.n]||{}).reading;
   const art = articleHTML(d);
@@ -916,7 +917,7 @@ const PHRASES = {
     ["Giving your opinion", ["From my point of view, …", "I strongly believe that…", "In my view, …"]],
     ["Reasons and examples", ["The main reason is that…", "For instance, …", "A good example of this is…"]],
     ["The other side", ["Admittedly, some people argue that…", "On the other hand, …", "Although this is true, …"]],
-    ["Conclusion", ["All in all, …", "To sum up, I am convinced that…", "For these reasons, I believe…"]]
+    ["Conclusion", ["In conclusion, …", "In conclusion, I believe that…", "In conclusion, although…, I am convinced that…"]]
   ]
 };
 const KIND_LABEL = {informal:"informal letter", formal:"formal letter", forum:"forum post"};
@@ -951,6 +952,7 @@ function taskChecks(d, t, text){
     out.push(li(/(in my (view|opinion)|from my point of view|i (strongly )?(believe|think|feel)|personally)/i.test(text), "Your opinion is clear (e.g. <i>From my point of view…</i>)."));
     out.push(li(/(for example|for instance|such as|a good example)/i.test(text), "You give examples (e.g. <i>For instance…</i>)."));
     out.push(li(linkers.length >= 4, linkers.length ? "Linking words: " + esc(linkers.join(", ")) + "." : "No linking words found yet."));
+    out.push(li(/(^|\n)\s*in conclusion\b/i.test(text), "Your last paragraph starts with <i>In conclusion,</i>"));
   }
   const used = vocabUsed(d, text);
   if(t.kind !== "informal") out.push(li(used.length >= 1, used.length ? "Today's words you used: " + esc(used.join(", ")) + "." : "Try to use a word from today's vocabulary."));
